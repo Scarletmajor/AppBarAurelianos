@@ -8,9 +8,7 @@
     tools:context=".TelaInicialActivity"
     tools:ignore="ExtraText">
 
-    <include
-        android:id="@+id/include5"
-        layout="@layout/toolbar"></include>
+   <include layout="@layout/toolbar" />
 
     <Button
         android:id="@+id/abrir_cardapio"
