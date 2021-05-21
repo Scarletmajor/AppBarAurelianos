@@ -20,22 +20,43 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_inicial)
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "TELA PRINCIPAL"
+        configuraMenuLateral()
+
+        val btn_abrir_comanda = findViewById<Button>(R.id.btn_abrir_comanda)
+        val btn_consultar_comanda = findViewById<Button>(R.id.btn_consultar_comanda)
+        val btn_cardapio = findViewById<Button>(R.id.btn_abrir_cardapio)
+
+        btn_abrir_comanda.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, AbrirComandaActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn_consultar_comanda.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, ConsultaComandaActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn_cardapio.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, AbrirCardapioActivity::class.java)
+            startActivity(intent)
+        })
 
         /**/
 
-        var params = intent.extras
+     /*   var params = intent.extras
         val nome: String? = params?.getString("nome")
         Toast.makeText(
             this, "Nome do usuário $nome",
             Toast.LENGTH_LONG).show()
-        var numero = params?.getInt("numero")
+        var numero = params?.getInt("numero")*/
 
 /*        setSupportActionBar(toolbar)*/
-        supportActionBar?.title = "TELA PRINCIPAL"
-        configuraMenuLateral()
 
 
-        recycler_produtos?.layoutManager = LinearLayoutManager(this)
+
+       // recycler_produtos?.layoutManager = LinearLayoutManager(this)
     }
 
 //        supportActionBar?.setDisplayHomeAsUpEnabled // seta para voltar
@@ -72,6 +93,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             startActivity(intent)
         })
     }*/
+/*
 
         private var produtos = listOf<Produto>()
         override fun onResume() {
@@ -84,6 +106,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         fun onClickProduto(produto: Produto){
             Toast.makeText(this, "Clicou produto ${produto.nome}", Toast.LENGTH_LONG).show()
         }
+*/
 
 
         private fun configuraMenuLateral(){
@@ -104,17 +127,27 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         override fun onNavigationItemSelected(item: MenuItem): Boolean {
             when(item.itemId){
                 R.id.nav_comanda -> {
-                    val builder = AlertDialog.Builder(this)
+                    val intent = Intent(this, AbrirComandaActivity::class.java)
+                    startActivity(intent)
+
+                    // o trecho abaixo testa se o botão funciona, emitidindo um alerta na tela
+                    /*val builder = AlertDialog.Builder(this)
                     builder.setNeutralButton("OK", null)
                     builder.setTitle("Alerta")
                     val dialog = builder.create()
-                    dialog.show()
+                    dialog.show()*/
 
+                }
+
+                R.id.nav_cardapio -> {
+                    Toast.makeText(this, "Clicou em Cardápio", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, AbrirCardapioActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.nav_pedido -> {
                     Toast.makeText(this, "CLicou em Anotar Pedido", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, AnotarPedidoActivity::class.java)
+                    val intent = Intent(this, CadastrarActivity::class.java)
                     startActivity(intent)
                 }
 
@@ -148,8 +181,10 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             val id = item.itemId
 
             if(id == R.id.action_buscar){
-                Toast.makeText(this, "METODO DE BUSCAR NAO IMPLEMENTADO",
+                Toast.makeText(this, "Abrir cardápio",
                     Toast.LENGTH_LONG).show()
+                val intent = Intent(this, AbrirCardapioActivity::class.java)
+                startActivity(intent)
             }
             else if( id == R.id.action_add){
                 Toast.makeText(this, "Botão de adicionar clicado",

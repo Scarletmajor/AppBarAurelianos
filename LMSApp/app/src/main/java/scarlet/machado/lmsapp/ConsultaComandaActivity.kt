@@ -3,16 +3,21 @@ package scarlet.machado.lmsapp
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.toolbar.*
+import android.view.View
+import android.widget.Button
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_cardapio.*
 
-class AnotarPedidoActivity : DebugActivity(){
+class ConsultaComandaActivity : DebugActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_anotar_pedido2)
+        setContentView(R.layout.activity_comandas)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "INSERIR PEDIDO"
+        supportActionBar?.title = "COMANDAS EM ABERTO.:"
 
+        recycler_produtos?.layoutManager = LinearLayoutManager(this)
     }
 
 

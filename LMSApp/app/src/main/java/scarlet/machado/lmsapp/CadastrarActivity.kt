@@ -12,18 +12,32 @@ import kotlinx.android.synthetic.main.toolbar.*
 class CadastrarActivity : DebugActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cadastrar)
+        setContentView(R.layout.activity_anotar_pedido)
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "INSERIR PEDIDO"
 
         val btn_confirm_comanda = findViewById<Button>(R.id.btn_confirmar_comanda)
+        val btn_consultar_cardapio = findViewById<Button>(R.id.btn_consultar_cardapio)
+        val btn_abrir_comanda = findViewById<Button>(R.id.BtnAbrirNovaComanda)
 
         btn_confirm_comanda.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, AnotarPedidoActivity::class.java)
             startActivity(intent)
         })
+
+        btn_consultar_cardapio.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, AbrirCardapioActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn_abrir_comanda.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, AbrirComandaActivity::class.java)
+            startActivity(intent)
+        })
+
+
 
 
     }

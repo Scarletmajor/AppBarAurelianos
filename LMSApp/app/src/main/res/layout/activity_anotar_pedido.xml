@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    tools:context=".CadastrarActivity"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".CadastrarActivity">
+
 
 
     <TextView
@@ -13,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:background="@color/teal_200"
         android:text="INSERIR PEDIDO"
         android:textAlignment="center"
         android:textSize="30dp"
@@ -54,7 +54,6 @@
         android:layout_marginEnd="145dp"
         android:text="CONFIRMAR"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextNumeroComanda" />
 
@@ -72,8 +71,8 @@
         app:layout_constraintTop_toBottomOf="@+id/EditTextNumeroComanda" />
 
     <Button
-        android:id="@+id/BtnConsultaCardápio"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_consultar_cardapio"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"

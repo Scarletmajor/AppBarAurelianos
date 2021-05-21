@@ -70,7 +70,7 @@
         android:textColorHint="#CCCACA" />
 
     <Button
-        android:id="@+id/botao_login"
+        android:id="@+id/btn_botao_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="login"
