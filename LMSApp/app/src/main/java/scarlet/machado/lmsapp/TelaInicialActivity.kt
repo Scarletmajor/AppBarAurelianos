@@ -43,7 +43,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             startActivity(intent)
         })
 
-        /**/
+
 
      /*   var params = intent.extras
         val nome: String? = params?.getString("nome")
