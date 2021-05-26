@@ -146,19 +146,19 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
                 }
 
                 R.id.nav_pedido -> {
-                    Toast.makeText(this, "CLicou em Anotar Pedido", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Clicou em Anotar Pedido", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, CadastrarActivity::class.java)
                     startActivity(intent)
                 }
 
                 R.id.nav_config -> {
-                    Toast.makeText(this, "CLicou em Configurar", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Clicou em Configurar", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, ConfigurarActivity::class.java)
                     startActivity(intent)
                 }
 
                 R.id.nav_sair -> {
-                    Toast.makeText(this, "CLicou em Sair", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Clicou em Sair", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
