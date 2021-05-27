@@ -1,12 +1,21 @@
 package scarlet.machado.lmsapp
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +26,13 @@ import kotlinx.android.synthetic.main.activity_tela_inicial.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    lateinit var notificationManager: NotificationManager
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var builder: Notification.Builder
+    private val channelID = "Pedr"
+    private val desc = "Notificação.:"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_inicial)
@@ -24,9 +40,17 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         supportActionBar?.title = "TELA PRINCIPAL"
         configuraMenuLateral()
 
+        // a linha abaixo dd a
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // intent para a notoficação
+        val intentNotificacao = Intent(this, ConsultaComandaActivity::class.java)
+
         val btn_abrir_comanda = findViewById<Button>(R.id.btn_abrir_comanda)
         val btn_consultar_comanda = findViewById<Button>(R.id.btn_consultar_comanda)
         val btn_cardapio = findViewById<Button>(R.id.btn_abrir_cardapio)
+
+
 
         btn_abrir_comanda.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, AbrirComandaActivity::class.java)
@@ -44,7 +68,8 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         })
 
 
-
+        // o trecho abaixo pega o nome do usuario digitado e mostra na tela de boas vindas
+        // TOTALMENTE OPCIONAL, tirei mas deixei aqui caso alguem queira mudar
      /*   var params = intent.extras
         val nome: String? = params?.getString("nome")
         Toast.makeText(
@@ -54,14 +79,9 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
 
 /*        setSupportActionBar(toolbar)*/
 
-
-
        // recycler_produtos?.layoutManager = LinearLayoutManager(this)
     }
-
 //        supportActionBar?.setDisplayHomeAsUpEnabled // seta para voltar
-
-
 
        /* val btn_cardapio = findViewById<Button>(R.id.abrir_cardapio)
         val btn_comanda = findViewById<Button>(R.id.comandas)
@@ -72,8 +92,9 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         clickBotoesPrincipal(btn_cardapio, btn_pedido, btn_comanda)
 
     }
-
-    private fun clickBotoesPrincipal(btn_cardapio: Button, btn_pedido: Button, btn_comanda: Button) {
+        // A IMPLEMENTAÇÃO ABAIXO FOI NO INICIO DO PROJETO
+        // HOUVE MODIFICAÇÕES DURANTE O DESENVOLVINENTO
+        // RESOLVI DEIXAR PARA FINS DE APRENDIZADO
         btn_cardapio.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, ProdutosActivity::class.java) *//*enviar para tela de cadastro*//*
             Toast.makeText(this, " NAO IMPLEMENTADO",
@@ -94,7 +115,8 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         })
     }*/
 /*
-
+        // O trecho abaixo lista produtos na tela inicial
+        // totalmente desnecessário mas está ai caso eu esqueça como implementar
         private var produtos = listOf<Produto>()
         override fun onResume() {
             super.onResume()
@@ -103,12 +125,13 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             }
         }
 
+
         fun onClickProduto(produto: Produto){
             Toast.makeText(this, "Clicou produto ${produto.nome}", Toast.LENGTH_LONG).show()
         }
 */
 
-
+        // configurando o menu lateral
         private fun configuraMenuLateral(){
             var toogle = ActionBarDrawerToggle(
                 this,
@@ -204,20 +227,60 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
 
             }
             else if (id == R.id.action_atualizar){
-                Toast.makeText(this, "METODO DE ATUALIZAR NAO IMPLEMENTADO",
+                Toast.makeText(this, "IMPLEMENTADO UMA NOTIFICAÇÃO QUANDO O USUÁRIO ATUALIZAR O APP",
                     Toast.LENGTH_LONG).show()
 
-            }else if(id == R.id.action_confg){
-                Toast.makeText(this, "BOTÃO DE CONFIGURAR CLICADO",
-                    Toast.LENGTH_LONG).show()
-                val intent = Intent(this, ConfigurarActivity::class.java) /*enviar para tela de cadastro*/
-                startActivity(intent)
+                val intentNotificacao = Intent(this, TelaInicialActivity::class.java)
+                val pendingIntent = PendingIntent.getActivity(this, 0,
+                        intentNotificacao, PendingIntent.FLAG_CANCEL_CURRENT)
+                val view = RemoteViews(packageName, R.layout.activity_tela_inicial)
 
-            }else if(id == android.R.id.home){
-                finish()
-            }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    notificationChannel = NotificationChannel(
+                            channelID, desc,
+                            NotificationManager.IMPORTANCE_HIGH
+                    )
 
-            return super.onOptionsItemSelected(item)
+                    notificationChannel.enableLights(true)
+                    notificationChannel.lightColor = Color.GRAY
+                    notificationChannel.enableVibration(true)
+                    notificationManager.createNotificationChannel(notificationChannel)
+
+                    builder = Notification.Builder(this)
+                            .setContentTitle("NOTIFICAÇÃO.:")
+                            .setContentText("CLIQUE AQUI E VERIFIQUE A NOTIFICAÇÃO")
+                            .setSmallIcon(R.drawable.ic_configuracoes_black)
+                            .setChannelId(channelID)
+                            .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_background))
+                            .setContentIntent(pendingIntent)
+                    startActivity(intent)
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        builder = Notification.Builder(this)
+                                .setContentTitle("NOTIFICAÇÃO.:")
+                                .setContentText("AQUI VAI A NOTIFICAÇÃO")
+                                .setSmallIcon(R.drawable.ic_configuracoes_black)
+                                .setChannelId(channelID)
+                                .setLargeIcon(BitmapFactory.decodeResource(this.resources,
+                                        R.drawable.ic_launcher_background)
+                                )
+                                .setContentIntent(pendingIntent)
+                        startActivity(intentNotificacao)
+                    }
+
+                }
+                notificationManager.notify(1234, builder.build())
+                   }else if(id == R.id.action_confg){
+                            Toast.makeText(this, "BOTÃO DE CONFIGURAR CLICADO",
+                                Toast.LENGTH_LONG).show()
+                            val intent = Intent(this, ConfigurarActivity::class.java) /*enviar para tela de cadastro*/
+                            startActivity(intent)
+
+                        }else if(id == android.R.id.home){
+                            finish()
+                        }
+
+                        return super.onOptionsItemSelected(item)
 
         }
     }

@@ -22,7 +22,7 @@ class MainActivity : DebugActivity() {
     lateinit var notificationChannel: NotificationChannel
     lateinit var builder: Notification.Builder
     private val channelID = "Pedro"
-    private val desc = "Notificação"
+    private val desc = "Notificação.:"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
