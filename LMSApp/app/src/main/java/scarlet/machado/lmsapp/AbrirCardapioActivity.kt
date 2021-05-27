@@ -17,7 +17,7 @@ class AbrirCardapioActivity : DebugActivity() {
         setContentView(R.layout.activity_cardapio)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "CARDÁPIO"
+        supportActionBar?.title = "CARDÁPIO.:"
 
         recycler_produtos?.layoutManager = LinearLayoutManager(this)
 

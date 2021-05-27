@@ -15,7 +15,7 @@ class AbrirComandaActivity : DebugActivity() {
         setContentView(R.layout.activity_abrir_comanda)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "ABRIR COMANDA"
+        supportActionBar?.title = "ABRIR COMANDA.:"
 
         val btn_abrir_comanda = findViewById<Button>(R.id.add_comanda)
         val btn_cancelar_abertura_comanda = findViewById<Button>(R.id.cancelar_comanda)

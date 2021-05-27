@@ -6,6 +6,9 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.toolbar.*
 
 class AcoesBtnActivity : DebugActivity() {
+    // ESTA CLASSE ESTÁ SEM UTILIZAÇÃO
+    // FOI IMPLEMENTADO NO INICIO DO PROJETO
+    // HOUVE ALTERAÇÕES ATÉ ENTÃO
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_acoesbtn)
