@@ -114,7 +114,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             startActivity(intent)
         })
     }*/
-/*
+        /*
         // O trecho abaixo lista produtos na tela inicial
         // totalmente desnecessário mas está ai caso eu esqueça como implementar
         private var produtos = listOf<Produto>()
@@ -190,7 +190,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             layout_menu_lateral.closeDrawer((GravityCompat.START))/*ao clicar em um item do menu, ele recolhe*/
             return true
         }
-     /*INFLANDO O MENU*/
+        /*INFLANDO O MENU*/
         override fun onCreateOptionsMenu(menu: Menu?): Boolean {
             menuInflater.inflate(R.menu.menu_main, menu)
             return true
