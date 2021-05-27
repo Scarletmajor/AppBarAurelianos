@@ -81,7 +81,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
 
        // recycler_produtos?.layoutManager = LinearLayoutManager(this)
     }
-//        supportActionBar?.setDisplayHomeAsUpEnabled // seta para voltar
+    //        supportActionBar?.setDisplayHomeAsUpEnabled // seta para voltar
 
        /* val btn_cardapio = findViewById<Button>(R.id.abrir_cardapio)
         val btn_comanda = findViewById<Button>(R.id.comandas)
@@ -189,16 +189,12 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             }
             layout_menu_lateral.closeDrawer((GravityCompat.START))/*ao clicar em um item do menu, ele recolhe*/
             return true
-
         }
-
-
-        /*INFLANDO O MENU*/
+     /*INFLANDO O MENU*/
         override fun onCreateOptionsMenu(menu: Menu?): Boolean {
             menuInflater.inflate(R.menu.menu_main, menu)
             return true
         }
-
         /*COLOCANDO OPÇÕES NO MENU*/
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
             val id = item.itemId
